@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: loan-ms
+  datasource:
+    url: jdbc:postgresql://localhost:5432/emprestimosdb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+feign:
+  httpclient:
+    enabled: true
+  client:
+    config:
+      paymentServiceClient:
+        host: ${PAYMENT_SERVICE_BASE_URL:http://localhost:8082}
+
